@@ -1,3 +1,5 @@
+import './css/main.css';
+
 import barba from '@barba/core';
 import gsap from 'gsap';
 import hoverEffect from 'hover-effect';
@@ -5,22 +7,48 @@ import hoverEffect from 'hover-effect';
 window.Webflow ||= [];
 window.Webflow.push(() => {
   barba.init({
+    preventRunning: true,
     transitions: [
       {
-        name: 'blog',
+        from: { namespace: ['blog'] },
+        to: { namespace: ['cards'] },
         async leave(data) {
           await gsap.to(data.current.container, {
             opacity: 0,
-            duration: 0.5,
+            duration: 1,
           });
         },
         beforeEnter() {
           generateCanvas();
         },
-        enter(data) {
+        async enter(data) {
           gsap.from(data.next.container, {
+            opacity: 0,
+            duration: 1,
+          });
+          await gsap.to(data.next.container, {
             opacity: 1,
-            duration: 0.5,
+            duration: 0,
+          });
+        },
+      },
+      {
+        from: { namespace: ['cards'] },
+        to: { namespace: ['blog'] },
+        async leave(data) {
+          await gsap.to(data.current.container, {
+            opacity: 0,
+            duration: 1,
+          });
+        },
+        async enter(data) {
+          gsap.from(data.next.container, {
+            opacity: 0,
+            duration: 1,
+          });
+          await gsap.to(data.next.container, {
+            opacity: 1,
+            duration: 0,
           });
         },
       },
