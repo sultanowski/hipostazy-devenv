@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["../src/css/main.css"],
+  "sourcesContent": [".hs-fixed {\n  position: fixed;\n  top: 0;\n  left: 0;\n}\n\n.hs-hide {\n  display: none;\n}"],
+  "mappings": ";AAAA;AACE;AACA;AACA;AAAA;AAGF;AACE;AAAA;",
+  "names": []
+}
